@@ -27,11 +27,6 @@ func init() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	templates["test-modal"], err = template.ParseFiles("api/templates/test-modal.html")
-	if err != nil {
-		log.Fatal(err)
-	}
 }
 
 func RoutesHandler(w http.ResponseWriter, r *http.Request) {
