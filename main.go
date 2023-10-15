@@ -5,8 +5,7 @@ import (
 	"database/sql"
 	"log"
 	"net/http"
-
-	_ "github.com/libsql/go-libsql"
+	// _ "github.com/libsql/go-libsql"
 	// "fmt"
 	// _ "github.com/libsql/libsql-client-go/libsql"
 	// _ "modernc.org/sqlite"
