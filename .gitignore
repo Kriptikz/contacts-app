@@ -1,3 +1,4 @@
 .env
 .DS_store
 godocker
+test.db
