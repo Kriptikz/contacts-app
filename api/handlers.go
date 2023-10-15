@@ -2,6 +2,7 @@ package api
 
 import (
 	"bytes"
+	"contacts-app/data/database"
 	"fmt"
 	"html/template"
 	"log"
@@ -25,9 +26,11 @@ func init() {
 
 func RoutesHandler(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path == "/" {
-		GetIndexHandler(w, r)
+		HandleGetIndex(w, r)
 	} else if r.URL.Path == "/ping" {
 		HandlePing(w, r)
+	} else if r.URL.Path == "/contacts" {
+		HandleGetContacts(w, r)
 	} else {
 		NotFoundHandler(w, r)
 	}
@@ -38,7 +41,21 @@ func HandlePing(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "pong")
 }
 
-func GetIndexHandler(w http.ResponseWriter, r *http.Request) {
+func HandleGetContacts(w http.ResponseWriter, r *http.Request) {
+	data, err := database.DB.GetAllContacts()
+
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		fmt.Fprintf(w, "Error: Failed to get all contacts")
+	}
+	w.WriteHeader(http.StatusOK)
+	fmt.Fprintf(w, "pong")
+	for _, contact := range data {
+		fmt.Fprintf(w, "ID: %d, Name: %s, Email: %s, Phone: %s\n", contact.ID, contact.Name, contact.Email, contact.Phone)
+	}
+}
+
+func HandleGetIndex(w http.ResponseWriter, r *http.Request) {
 	err := templates["index"].ExecuteTemplate(w, "index.html", nil)
 	if err != nil {
 		log.Println("Error when executing template", err)
