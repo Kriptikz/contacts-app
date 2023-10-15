@@ -11,7 +11,7 @@ COPY . .
 RUN go mod download
  
 # Builds your app with optional configuration
-RUN go build -o ./godocker
+RUN go build -o /godocker
  
 # Specifies the executable command that runs when the container starts
 CMD [ "/godocker" ]
