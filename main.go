@@ -2,7 +2,7 @@ package main
 
 import (
 	"contacts-app/api"
-	"database/sql"
+	// "database/sql"
 	"log"
 	"net/http"
 	// _ "github.com/libsql/go-libsql"
@@ -61,65 +61,57 @@ func main() {
 	// 	log.Fatal(err)
 	// }
 
-	log.Println("Creating embedded replica")
+	// log.Println("Creating embedded replica")
 	// var dbUrl = ProjectConfig.DatabaseUrl // + "?authToken=" + ProjectConfig.DatabaseKey
-	log.Println("Connecting to database")
-	db, err := sql.Open("libsql", "test.db")
-	if err != nil {
-		panic(err)
-	}
+	// log.Println("Connecting to database")
+	// db, err := sql.Open("", "test.db")
+	// if err != nil {
+	// 	panic(err)
+	// }
 
-	// Ensure the database connection is closed when the application stops
-	defer func() {
-		err := db.Close()
-		if err != nil {
-			log.Println("Error closing database:", err)
-		}
-	}()
+	// log.Println("Querying DB")
+	// rows, err := db.Query("SELECT * FROM users")
+	// if err != nil {
+	// 	panic(err)
+	// }
+	// defer func() {
+	// 	if err := rows.Close(); err != nil {
+	// 		panic(err)
+	// 	}
 
-	log.Println("Querying DB")
-	rows, err := db.Query("SELECT * FROM users")
-	if err != nil {
-		panic(err)
-	}
-	defer func() {
-		if err := rows.Close(); err != nil {
-			panic(err)
-		}
+	// 	columns, err := rows.Columns()
+	// 	if err != nil {
+	// 		log.Fatal(err)
+	// 	}
 
-		columns, err := rows.Columns()
-		if err != nil {
-			log.Fatal(err)
-		}
+	// 	values := make([]sql.RawBytes, len(columns))
 
-		values := make([]sql.RawBytes, len(columns))
+	// 	scanArgs := make([]interface{}, len(values))
+	// 	for i := range values {
+	// 		scanArgs[i] = &values[i]
+	// 	}
 
-		scanArgs := make([]interface{}, len(values))
-		for i := range values {
-			scanArgs[i] = &values[i]
-		}
+	// 	for rows.Next() {
+	// 		err = rows.Scan(scanArgs...)
+	// 		if err != nil {
+	// 			log.Fatal(err)
+	// 		}
 
-		for rows.Next() {
-			err = rows.Scan(scanArgs...)
-			if err != nil {
-				log.Fatal(err)
-			}
+	// 		var value string
+	// 		for i, col := range values {
+	// 			if col == nil {
+	// 				value = "NULL"
+	// 			} else {
+	// 				value = string(col)
+	// 			}
+	// 			log.Println(columns[i], ": ", value)
+	// 		}
+	// 	}
 
-			var value string
-			for i, col := range values {
-				if col == nil {
-					value = "NULL"
-				} else {
-					value = string(col)
-				}
-				log.Println(columns[i], ": ", value)
-			}
-		}
-
-		if err = rows.Err(); err != nil {
-			log.Fatal(err)
-		}
-	}()
+	// 	if err = rows.Err(); err != nil {
+	// 		log.Fatal(err)
+	// 	}
+	// }()
 
 	// // Initialize the database
 	// err := database.DB.InitDB()
