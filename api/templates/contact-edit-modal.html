@@ -1,0 +1,354 @@
+<style>
+    .main-container {
+        align-items: center;
+        border-radius: 24px;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .close-icon {
+        justify-content: flex-end;
+        align-items: center;
+        align-self: stretch;
+        background-color: #fff;
+        display: flex;
+        padding: 11px 20px;
+        flex-direction: column;
+    }
+
+    @media (max-width: 991px) {
+        .close-icon {
+            max-width: 100%;
+        }
+    }
+
+    .img {
+        aspect-ratio: 1;
+        object-fit: cover;
+        object-position: center;
+        width: 40px;
+        overflow: hidden;
+        align-self: flex-end;
+    }
+
+    .title {
+        color: #000;
+        font-family: Inter, sans-serif;
+        font-size: 36px;
+        font-weight: 600;
+        letter-spacing: -0.72px;
+        align-self: center;
+        margin-top: 48px;
+        white-space: nowrap;
+    }
+
+    @media (max-width: 991px) {
+        .title {
+            white-space: initial;
+        }
+    }
+
+    .contact-container {
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+        display: flex;
+        margin-top: 49px;
+        width: 340px;
+        max-width: 100%;
+        flex-direction: column;
+    }
+
+    .contact-row {
+        justify-content: space-between;
+        align-items: flex-start;
+        border-radius: 4px;
+        border: 1px solid #bbb;
+        background-color: #fff;
+        align-self: stretch;
+        display: flex;
+        width: 100%;
+        gap: 20px;
+        padding: 13px 9px;
+    }
+
+    .contact-name {
+        color: #000;
+        font-family: Inter, sans-serif;
+        font-size: 24px;
+        font-weight: 400;
+        letter-spacing: -0.48px;
+        align-self: center;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    .contact-img {
+        aspect-ratio: 1;
+        object-fit: cover;
+        object-position: center;
+        width: 24px;
+        overflow: hidden;
+    }
+
+    .save-container {
+        justify-content: center;
+        align-items: flex-start;
+        border-radius: 4px;
+        border: 1px solid #bbb;
+        background-color: #1b2052;
+        align-self: center;
+        display: flex;
+        margin-top: 40px;
+        margin-bottom: 80px;
+        width: 142px;
+        max-width: 100%;
+        padding: 10px 20px;
+        flex-direction: column;
+    }
+
+    .save-row {
+        align-self: center;
+        display: flex;
+        width: 77px;
+        max-width: 100%;
+        align-items: flex-start;
+        gap: 11px;
+    }
+
+    .save-text {
+        color: #fff;
+        font-family: Inter, sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        letter-spacing: -0.4px;
+        align-self: center;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    .save-img {
+        aspect-ratio: 1;
+        object-fit: cover;
+        object-position: center;
+        width: 24px;
+        overflow: hidden;
+    }
+
+    /***** MODAL DIALOG ****/
+    #modal {
+        /* Underlay covers entire screen. */
+        position: fixed;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+
+        /* Flexbox centers the .modal-content vertically and horizontally */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        /* Animate when opening */
+        animation-name: fadeIn;
+        animation-duration: 150ms;
+        animation-timing-function: ease;
+    }
+
+    #modal > .modal-underlay {
+        /* underlay takes up the entire viewport. This is only
+	required if you want to click to dismiss the popup */
+        position: absolute;
+        z-index: -1;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+    }
+
+    #modal > .modal-content {
+        /* Position visible dialog near the top of the window */
+        margin-top: 10vh;
+
+        /* Sizing for visible dialog */
+        width: 80%;
+        max-width: 600px;
+
+        /* Display properties for visible dialog*/
+        border: solid 1px #999;
+        border-radius: 8px;
+        box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
+        background-color: white;
+        padding: 20px;
+
+        /* Animate when opening */
+        animation-name: zoomIn;
+        animation-duration: 150ms;
+        animation-timing-function: ease;
+    }
+
+    #modal.closing {
+        /* Animate when closing */
+        animation-name: fadeOut;
+        animation-duration: 150ms;
+        animation-timing-function: ease;
+    }
+
+    #modal.closing > .modal-content {
+        /* Animate when closing */
+        animation-name: zoomOut;
+        animation-duration: 150ms;
+        animation-timing-function: ease;
+    }
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeOut {
+        0% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+
+    @keyframes zoomIn {
+        0% {
+            transform: scale(0.9);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    @keyframes zoomOut {
+        0% {
+            transform: scale(1);
+        }
+        100% {
+            transform: scale(0.9);
+        }
+    }
+</style>
+<div
+    id="modal"
+    _="on closeModal add .closing then wait for animationend then remove me"
+>
+    <!-- <div class="modal-underlay" _="on click trigger closeModal"></div> -->
+    <div class="modal-content">
+        <div class="main-container">
+            <div class="close-icon">
+                <div
+                    class="img"
+                    style="
+                        background: url('/public/assets/x-close-icon.svg')
+                            no-repeat center center;
+                        background-size: cover;
+                        cursor: pointer;
+                    "
+                    _="on click trigger closeModal"
+                ></div>
+            </div>
+            <div class="title">Edit Contact</div>
+            <div class="contact-container">
+                <div class="contact-row">
+                    <div class="contact-name">Omar</div>
+                    <img
+                        loading="lazy"
+                        srcset="
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/00dbbd3a-a7a9-42e8-acd0-053c98df9ecb?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=100   100w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/00dbbd3a-a7a9-42e8-acd0-053c98df9ecb?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=200   200w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/00dbbd3a-a7a9-42e8-acd0-053c98df9ecb?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=400   400w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/00dbbd3a-a7a9-42e8-acd0-053c98df9ecb?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=800   800w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/00dbbd3a-a7a9-42e8-acd0-053c98df9ecb?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=1200 1200w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/00dbbd3a-a7a9-42e8-acd0-053c98df9ecb?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=1600 1600w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/00dbbd3a-a7a9-42e8-acd0-053c98df9ecb?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=2000 2000w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/00dbbd3a-a7a9-42e8-acd0-053c98df9ecb?apiKey=1fe19430d62d42ba90dd1e96cd411861&
+                        "
+                        class="contact-img"
+                    />
+                </div>
+                <div class="contact-row">
+                    <div class="contact-name">Gudino</div>
+                    <img
+                        loading="lazy"
+                        srcset="
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/897b0d4a-b8d3-4407-b2ca-4428cb20cff9?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=100   100w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/897b0d4a-b8d3-4407-b2ca-4428cb20cff9?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=200   200w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/897b0d4a-b8d3-4407-b2ca-4428cb20cff9?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=400   400w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/897b0d4a-b8d3-4407-b2ca-4428cb20cff9?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=800   800w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/897b0d4a-b8d3-4407-b2ca-4428cb20cff9?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=1200 1200w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/897b0d4a-b8d3-4407-b2ca-4428cb20cff9?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=1600 1600w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/897b0d4a-b8d3-4407-b2ca-4428cb20cff9?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=2000 2000w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/897b0d4a-b8d3-4407-b2ca-4428cb20cff9?apiKey=1fe19430d62d42ba90dd1e96cd411861&
+                        "
+                        class="contact-img"
+                    />
+                </div>
+                <div class="contact-row">
+                    <div class="contact-name">ogudino19@gmail.com</div>
+                    <img
+                        loading="lazy"
+                        srcset="
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/e9bc2ae4-f325-4c1e-bb8f-e254cb08a587?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=100   100w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/e9bc2ae4-f325-4c1e-bb8f-e254cb08a587?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=200   200w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/e9bc2ae4-f325-4c1e-bb8f-e254cb08a587?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=400   400w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/e9bc2ae4-f325-4c1e-bb8f-e254cb08a587?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=800   800w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/e9bc2ae4-f325-4c1e-bb8f-e254cb08a587?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=1200 1200w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/e9bc2ae4-f325-4c1e-bb8f-e254cb08a587?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=1600 1600w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/e9bc2ae4-f325-4c1e-bb8f-e254cb08a587?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=2000 2000w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/e9bc2ae4-f325-4c1e-bb8f-e254cb08a587?apiKey=1fe19430d62d42ba90dd1e96cd411861&
+                        "
+                        class="contact-img"
+                    />
+                </div>
+                <div class="contact-row">
+                    <div class="contact-name">+1 (313) 313-1234</div>
+                    <img
+                        loading="lazy"
+                        srcset="
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/2f9b1f2f-3bd4-43af-91ab-c6f99270059d?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=100   100w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/2f9b1f2f-3bd4-43af-91ab-c6f99270059d?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=200   200w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/2f9b1f2f-3bd4-43af-91ab-c6f99270059d?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=400   400w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/2f9b1f2f-3bd4-43af-91ab-c6f99270059d?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=800   800w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/2f9b1f2f-3bd4-43af-91ab-c6f99270059d?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=1200 1200w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/2f9b1f2f-3bd4-43af-91ab-c6f99270059d?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=1600 1600w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/2f9b1f2f-3bd4-43af-91ab-c6f99270059d?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=2000 2000w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/2f9b1f2f-3bd4-43af-91ab-c6f99270059d?apiKey=1fe19430d62d42ba90dd1e96cd411861&
+                        "
+                        class="contact-img"
+                    />
+                </div>
+            </div>
+            <div class="save-container">
+                <div class="save-row">
+                    <div class="save-text">Save</div>
+                    <img
+                        loading="lazy"
+                        srcset="
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/bcf83f39-1429-4433-9505-ae937de3550c?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=100   100w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/bcf83f39-1429-4433-9505-ae937de3550c?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=200   200w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/bcf83f39-1429-4433-9505-ae937de3550c?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=400   400w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/bcf83f39-1429-4433-9505-ae937de3550c?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=800   800w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/bcf83f39-1429-4433-9505-ae937de3550c?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=1200 1200w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/bcf83f39-1429-4433-9505-ae937de3550c?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=1600 1600w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/bcf83f39-1429-4433-9505-ae937de3550c?apiKey=1fe19430d62d42ba90dd1e96cd411861&width=2000 2000w,
+                            https://cdn.builder.io/api/v1/image/assets/TEMP/bcf83f39-1429-4433-9505-ae937de3550c?apiKey=1fe19430d62d42ba90dd1e96cd411861&
+                        "
+                        class="save-img"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

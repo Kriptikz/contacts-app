@@ -22,6 +22,16 @@ func init() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	templates["contact-edit-modal"], err = template.ParseFiles("api/templates/contact-edit-modal.html")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	templates["test-modal"], err = template.ParseFiles("api/templates/test-modal.html")
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func RoutesHandler(w http.ResponseWriter, r *http.Request) {
@@ -31,6 +41,8 @@ func RoutesHandler(w http.ResponseWriter, r *http.Request) {
 		HandlePing(w, r)
 	} else if r.URL.Path == "/contacts" {
 		HandleGetContacts(w, r)
+	} else if r.URL.Path == "/contact/edit" {
+		HandleGetEditContactModal(w, r)
 	} else {
 		NotFoundHandler(w, r)
 	}
@@ -57,6 +69,15 @@ func HandleGetContacts(w http.ResponseWriter, r *http.Request) {
 
 func HandleGetIndex(w http.ResponseWriter, r *http.Request) {
 	err := templates["index"].ExecuteTemplate(w, "index.html", nil)
+	if err != nil {
+		log.Println("Error when executing template", err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+}
+
+func HandleGetEditContactModal(w http.ResponseWriter, r *http.Request) {
+	err := templates["contact-edit-modal"].ExecuteTemplate(w, "contact-edit-modal.html", nil)
 	if err != nil {
 		log.Println("Error when executing template", err)
 		w.WriteHeader(http.StatusInternalServerError)

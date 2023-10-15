@@ -1,28 +1,32 @@
 {{ define "contact-item" }}
 <div class="contact-list-item">
-  <div class="contact-list-item-body">
-      <div class="contact-list-item-details">
-          <input type="checkbox" />
-          <div class="contact-list-item-name">
-              Omar Gudino
-          </div>
-          <div class="contact-list-item-email">
-              ogudino19@gmail.com
-          </div>
-          <div class="contact-list-item-phone">
-              +1 (313) 421-2690
-          </div>
-          <div class="contact-list-item-tags">
-              Tags
-          </div>
-          <div class="contact-list-item-created-at">
-              09 Sept 2023
-          </div>
-          <div class="contact-list-item-actions">
-            <img src="/public/assets/edit-icon.svg" alt="Edit" class="edit-icon">
-            <img src="/public/assets/delete-icon.svg" alt="Delete" class="delete-icon">
-          </div>
-      </div>
-  </div>
+    <div class="contact-list-item-body">
+        <div class="contact-list-item-details">
+            <input type="checkbox" />
+            <div class="contact-list-item-name">Omar Gudino</div>
+            <div class="contact-list-item-email">ogudino19@gmail.com</div>
+            <div class="contact-list-item-phone">+1 (313) 421-2690</div>
+            <div class="contact-list-item-tags">Tags</div>
+            <div class="contact-list-item-created-at">09 Sept 2023</div>
+            <div class="contact-list-item-actions">
+                <img
+                    hx-get="/contact/edit"
+                    hx-target="body"
+                    hx-swap="beforeend"
+                    src="/public/assets/edit-icon.svg"
+                    alt="Edit"
+                    class="edit-icon"
+                    style="cursor: pointer;"
+                />
+
+                <img
+                    src="/public/assets/delete-icon.svg"
+                    alt="Delete"
+                    class="delete-icon"
+                    style="cursor: pointer;"
+                />
+            </div>
+        </div>
+    </div>
 </div>
 {{ end}}
