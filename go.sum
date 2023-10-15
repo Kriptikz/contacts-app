@@ -1,2 +1,4 @@
 github.com/joho/godotenv v1.5.1 h1:7eLL/+HRGLY0ldzfGMeQkb7vMd0as4CfYvUVzLqw0N0=
 github.com/joho/godotenv v1.5.1/go.mod h1:f4LDr5Voq0i2e/R5DDNOoa2zzDfwtkZa6DnEwAbqwq4=
+github.com/libsql/go-libsql v0.0.0-20230922154758-6ac12c54d603 h1:FXb3Q3I2RC7IUT3NfO+bcjMxE/bdk3Xy6P0lp7lo+LE=
+github.com/libsql/go-libsql v0.0.0-20230922154758-6ac12c54d603/go.mod h1:MnEG8k0pwr7Y+sLumkzeSpmjuCmi3zRPGc7VlQ05vlg=

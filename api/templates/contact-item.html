@@ -1,13 +1,28 @@
 {{ define "contact-item" }}
-<div class="contact-item">
-  <input type="checkbox" class="contact-select">
-  <div class="contact-name">John Doe</div>
-  <div class="contact-email">john.doe@example.com</div>
-  <div class="contact-phone">123-456-7890</div>
-  <div class="contact-date">01/01/2022</div>
-  <div class="contact-actions">
-    <img src="/public/assets/edit-icon.svg" alt="Edit" class="edit-icon">
-    <img src="/public/assets/delete-icon.svg" alt="Delete" class="delete-icon">
+<div class="contact-list-item">
+  <div class="contact-list-item-body">
+      <div class="contact-list-item-details">
+          <input type="checkbox" />
+          <div class="contact-list-item-name">
+              Omar Gudino
+          </div>
+          <div class="contact-list-item-email">
+              ogudino19@gmail.com
+          </div>
+          <div class="contact-list-item-phone">
+              +1 (313) 421-2690
+          </div>
+          <div class="contact-list-item-tags">
+              Tags
+          </div>
+          <div class="contact-list-item-created-at">
+              09 Sept 2023
+          </div>
+          <div class="contact-list-item-actions">
+            <img src="/public/assets/edit-icon.svg" alt="Edit" class="edit-icon">
+            <img src="/public/assets/delete-icon.svg" alt="Delete" class="delete-icon">
+          </div>
+      </div>
   </div>
 </div>
 {{ end}}

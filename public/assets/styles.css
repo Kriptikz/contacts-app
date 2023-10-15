@@ -1,0 +1,247 @@
+body {
+  background-color: #1b2052;
+  display: flex;
+  min-width: 475px;
+  flex-direction: column;
+}
+
+.header {
+  align-self: center;
+  display: flex;
+  width: 310px;
+  max-width: 100%;
+  align-items: flex-start;
+  gap: 4px;
+  margin-top: 51px;
+}
+
+.logo {
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center;
+  width: 48px;
+  overflow: hidden;
+  align-self: start;
+}
+
+.header-app-name-text {
+  color: #fff;
+  font-family: Hoefler Text, sans-serif;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 0%;
+  letter-spacing: -0.8px;
+  align-self: start;
+  margin-top: 31px;
+  white-space: nowrap;
+  flex-grow: 1;
+  flex-basis: auto;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.search-toolbar {
+  align-self: center;
+  display: flex;
+  margin-top: 51px;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.search-input-box {
+  border-radius: 36px;
+  border: 1px solid #b7b7b7;
+  background-color: #fff;
+  align-self: stretch;
+  display: flex;
+  padding: 10px;
+  flex-direction: row;
+  flex-grow: 1;
+  flex-basis: auto;
+  margin-left: auto;
+}
+
+.search-icon {
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center;
+  width: 26px;
+  overflow: hidden;
+}
+
+.total-contacts-count-input-placeholder {
+  color: #b7b7b7;
+  font-family: Futura, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  align-self: center;
+  white-space: nowrap;
+}
+
+.add-new-contact-icon {
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center;
+  width: 40px;
+  overflow: hidden;
+  align-self: center;
+  margin: auto;
+}
+
+.contacts-list-header {
+  display: flex;
+  margin-top: 32px;
+  justify-content: space-evenly;
+  gap: 20px;
+}
+
+.list-header-column-name,
+.list-header-column-email,
+.list-header-column-phone,
+.list-header-column-tags,
+.list-header-column-date-created {
+  color: rgba(255, 255, 255, 0.69);
+  font-family: Inter, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.contacts-list-body {
+  justify-content: center;
+  border-radius: 16px;
+  background-color: #efeeff;
+  align-self: stretch;
+  display: flex;
+  margin-top: 10px;
+  flex-grow: 1;
+  padding: 18px 16px 35px;
+  flex-direction: column;
+  margin-bottom: 51px;
+}
+
+.contacts-list-scrollable-wrapper {
+  border-radius: 16px 16px 16px 16px;
+  background-color: #efeeff;
+  display: flex;
+  margin-top: -2px;
+  max-height: 45vh;
+  padding: 16px;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.contact-list-items {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-list-item {
+  border-radius: 8px;
+  background-color: #fff;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 14px 20px 16px;
+}
+
+.contact-list-item:hover {
+  background-color: #DCDAFF;
+}
+
+.contact-list-item-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .contact-list-item-details {
+      flex-direction: column;
+      align-items: center;
+  }
+}
+
+.contact-list-item-name,
+.contact-list-item-email,
+.contact-list-item-phone,
+.contact-list-item-tags,
+.contact-list-item-created-at {
+  color: #000;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  align-self: center;
+}
+
+.contact-list-item-tags {
+  color: #000;
+  font-family: Inter, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.contact-list-item-created-at {
+  color: #000;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.contact-list-item-actions {
+  justify-content: space-between;
+  align-items: flex-start;
+  display: flex;
+  width: 81px;
+}
+
+.edit-contact-icon,
+.delete-contact-icon {
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center;
+  width: 24px;
+  overflow: hidden;
+}
+
+.bulk-selected-items-actions {
+  align-self: center;
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 2px;
+  width: 298px;
+  max-width: 100%;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.archive-contacts,
+.delete-selected {
+  color: #fff;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  align-self: stretch;
+  white-space: nowrap;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  width: 146px;
+  max-width: 100%;
+  padding: 17px 16px;
+}
+
+.archive-contacts {
+  background-color: #1bc000;
+}
+
+.delete-selected {
+  background-color: #eb3223;
+}

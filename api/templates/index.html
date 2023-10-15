@@ -1,70 +1,59 @@
-<head>
-  <title>Contacts.App</title>
-  <meta charset="UTF-8">
-  <meta name="title" content="Contacts.App">
-  <meta name="description" content="A simple contacts app.">
-  <meta name="author" content="Cruz Aleman">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/public/assets/styles.css">
-
-</head>
-
-<body style="background-color: #1B2052;">
-  <main>
-    <div style="justify-content: center; align-items: flex-end; gap: 10px; display: flex; margin-top: 28px;">
-      <div style="padding: 16px 24px; display: flex">
-        <div style="width: 48px; height: 48px; display: flex; justify-content: center; align-items: center;">
-          <img src="/public/assets/logo.svg" alt="Logo" />
-        </div>
-        <div style="display: flex; align-items: flex-end;">
-          <div
-            style="color: white; font-size: 40px; font-family: Hoefler Text; font-weight: 700; word-wrap: break-word; padding-top: 15px;">
-            Contacts.App</div>
-        </div>
-      </div>
-    </div>
-    </div>
-    <div class="content-wrapper">
-      <div class="content">
-        <div class="tool-bar">
-          <div class="search-input">
-            <input type="search" name="search" id="search" placeholder="Search">
-          </div>
-          <div class="sort-by-selection">
-            <div class="sort-by-text">Sort By</div>
-            <div class="sort-by-icon">
-              <img src="/public/assets/upside-down-triangle.svg" alt="Sort By Icon" />
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Contacts.App</title>
+      <meta charset="UTF-8">
+      <meta name="title" content="Contacts.App">
+      <meta name="description" content="A simple contacts app.">
+      <meta name="author" content="Cruz Aleman">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="/public/assets/styles.css">
+      <link rel="icon" type="image/svg+xml" href="/public/assets/logo.svg">
+    </head>
+    <body>
+        <header class="header">
+            <div style="width: 48px; height: 48px; display: flex; justify-content: center; align-items: center;">
+              <img src="/public/assets/logo.svg" alt="Logo" />
             </div>
-          </div>
-          <div class="filter">
-            <div class="filter-icon-wrapper">
-              <img src="/public/assets/filter-icon.svg" alt="Filter Icon" />
+            <div class="header-app-name-text">Contacts.App</div>
+        </header>
+        <main class="main">
+            <div class="search-toolbar">
+                <div class="search-input-box">
+                    <img src="/public/assets/search-icon.svg" alt="Search Icon" />
+                    <div class="total-contacts-count-input-placeholder">
+                        2,213 Total Contacts
+                    </div>
+                </div>
+                <div class="add-new-contact-icon">
+                  <img src="/public/assets/add-contact-icon.svg" alt="Add Contact Icon" />
+                </div>
             </div>
-          </div>
-          <div class="add-new-contact-icon">
-            <img src="/public/assets/add-contact-icon.svg" alt="Add Contact Icon" />
-          </div>
-        </div>
-        <div class="contacts-list-header">
-          <div class="contact-item-header">
-            <div class="contact-select-header">
-              <img src="/public/assets/check-box-icon.svg" alt="Check Box Header Icon" />
+            <div class="contacts-list-header">
+                <input class="checkbox-icon" type="checkbox" />
+                <div class="list-header-column-name">Name</div>
+                <div class="list-header-column-email">Email Address</div>
+                <div class="list-header-column-phone">Phone</div>
+                <div class="list-header-column-tags">Tags</div>
+                <div class="list-header-column-date-created">Date created</div>
             </div>
-            <div class="contact-name-header">Name</div>
-            <div class="contact-email-header">Email</div>
-            <div class="contact-phone-header">Phone</div>
-            <div class="contact-date-header">Date</div>
-            <div class="contact-actions-header"></div>
-          </div>
-
-        </div>
-        <div class="contacts-list-wrapper">
-          <div class="contacts-list">
-            {{ template "contact-item" .}}
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </main>
-</body>
+            <div class="contacts-list-body">
+                <div class="contacts-list-scrollable-wrapper">
+                    <div class="contact-list-items">
+                        {{ template "contact-item" .}}
+                        {{ template "contact-item" .}}
+                        {{ template "contact-item" .}}
+                        {{ template "contact-item" .}}
+                        {{ template "contact-item" .}}
+                        {{ template "contact-item" .}}
+                        {{ template "contact-item" .}}
+                    </div>
+                </div>
+                <div class="bulk-selected-items-actions">
+                    <div class="archive-contacts">Archive Contacts</div>
+                    <div class="delete-selected">Delete Selected</div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
