@@ -7,6 +7,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"time"
 )
 
 var templates = make(map[string]*template.Template)
@@ -72,6 +73,7 @@ func HandleGetIndex(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandleGetEditContactModal(w http.ResponseWriter, r *http.Request) {
+	time.Sleep(4 * time.Second)
 	err := templates["contact-edit-modal"].ExecuteTemplate(w, "contact-edit-modal.html", nil)
 	if err != nil {
 		log.Println("Error when executing template", err)

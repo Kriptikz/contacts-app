@@ -1,32 +1,25 @@
 {{ define "contact-item" }}
 <div class="contact-list-item">
-    <div class="contact-list-item-body">
-        <div class="contact-list-item-details">
-            <input type="checkbox" />
-            <div class="contact-list-item-name">Omar Gudino</div>
-            <div class="contact-list-item-email">ogudino19@gmail.com</div>
-            <div class="contact-list-item-phone">+1 (313) 421-2690</div>
-            <div class="contact-list-item-tags">Tags</div>
-            <div class="contact-list-item-created-at">09 Sept 2023</div>
-            <div class="contact-list-item-actions">
-                <img
-                    hx-get="/contact/edit"
-                    hx-target="body"
-                    hx-swap="beforeend"
-                    src="/public/assets/edit-icon.svg"
-                    alt="Edit"
-                    class="edit-icon"
-                    style="cursor: pointer;"
-                />
-
-                <img
-                    src="/public/assets/delete-icon.svg"
-                    alt="Delete"
-                    class="delete-icon"
-                    style="cursor: pointer;"
-                />
-            </div>
+  <div class="contact-list-item-body">
+    <div class="contact-list-item-details">
+      <input type="checkbox" />
+      <div class="contact-list-item-name">Omar Gudino</div>
+      <div class="contact-list-item-email">ogudino19@gmail.com</div>
+      <div class="contact-list-item-phone">+1 (313) 421-2690</div>
+      <div class="contact-list-item-tags">Tags</div>
+      <div class="contact-list-item-created-at">09 Sept 2023</div>
+      <div class="contact-list-item-actions"
+        _="on htmx:afterSwap set .edit-icon.style.display to 'block' then set .spinner.style.display to 'none'">
+        <div style="position: relative; display: inline-block;">
+          <img hx-get="/contact/edit" hx-target="body" hx-swap="beforeend" hx-indicator=".edit-icon-indicator"
+            _="on click set me.style.display to 'none' then set me.nextElementSibling.style.display to 'block'"
+            class="edit-icon" src="/public/assets/edit-icon.svg" alt="Edit" style="cursor: pointer;" />
+          <img class="spinner edit-icon-indicator" src="/public/assets/spinner.svg"
+            style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display:none">
         </div>
+        <img src="/public/assets/delete-icon.svg" alt="Delete" class="delete-icon" style="cursor: pointer;" />
+      </div>
     </div>
+  </div>
 </div>
 {{ end}}
